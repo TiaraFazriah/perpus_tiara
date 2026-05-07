@@ -3,7 +3,6 @@ session_start();
 include 'koneksi.php';
 if(!isset($_SESSION["user"])) {
     header("location:login.php");
-
 }
 ?>
 <!DOCTYPE html>
@@ -61,21 +60,20 @@ if(!isset($_SESSION["user"])) {
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+                <?php  
+                if($_SESSION['user']['level'] == 'admin') {
+                ?>
                 <a class="nav-link" href="index.php?page=peminjaman">
                     <i class="fas fa-fw fa-handshake"></i>
                     Peminjaman
                 </a>
-                
-                <!-- <?php  
-                if ($_SESSION['user']['level'] == 'admin') {
-                ?>  -->
+                <?php } ?>
 
                <a class="nav-link" href="index.php?page=kategori">
                     <i class="fas fa-fw fa-tags"></i>
                     kategori
                 </a>
            
-               <!-- <?php } ?> -->
 
                 <a class="nav-link" href="index.php?page=ulasan">
                     <i class="fas fa-fw fa-star"></i>
@@ -350,7 +348,6 @@ if(!isset($_SESSION["user"])) {
 
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 

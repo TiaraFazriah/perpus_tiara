@@ -24,42 +24,35 @@
                         </div> -->
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Nama Kategori</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Nama Kategori</th>
-                                            <!-- jika login sebagai admin tampilkan tombol aksi -->
-                                            <?php  if($_SESSION['user']['level'] == 'admin'): ?>
-                                                <th>Aksi</th>
-                                            <?php endif; ?>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php
-                                        $i = 1;  
-                                        $query = mysqli_query($koneksi, "SELECT * FROM kategori");
-                                        while ($data=mysqli_fetch_array($query)) :
-                                        ?>
-                                        <tr>
-                                            <td><?=$i++; ?></td>
-                                            <td><?= $data['kategori']; ?></td>
-                                            <td>
-                                                <a href="?page=kategori_ubah&&id=<?= $data['id_kategori']; ?>" class="btn btn-info">Ubah</a>
-                                                <a href="?page=kategori_hapus&&id=<?= $data['id_kategori']; ?>" class="btn btn-danger">Hapus</a>
-                                            </td>
-                                        </tr>
-                                        <?php  endwhile; ?>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No.</th>
+                                        <th>Nama Kategori</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $i = 1;  
+                                    $query = mysqli_query($koneksi, "SELECT * FROM kategori");
+                                    while ($data=mysqli_fetch_array($query)) :
+                                    ?>
+                                    <tr>
+                                        <td><?=$i++; ?></td>
+                                        <td><?= $data['kategori']; ?></td>
+                                        <td>
+                                            <a href="?page=kategori_ubah&&id=<?= $data['id_kategori']; ?>" class="btn btn-info">Ubah</a>
+                                            <a onclick="return confirm('Apakah anda yakin ingin menghapus data ini?')" 
+                                                href="?page=kategori_hapus&&id=<?= $data['id_kategori']; ?>" 
+                                                class="btn btn-danger">Hapus
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <?php  endwhile; ?>
+                                </tbody>
+                            </table>
+                        </div>
                         </div>
                     </div>
                 </div>
